@@ -1,0 +1,3 @@
+Este es un ejemplo de cómo escribir en un archivo en Python.
+Puedes escribir múltiples líneas también.
+¡Es muy útil para guardar datos o resultados!
