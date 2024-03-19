@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {# Cargamos la librería #}
+    {% load bootstrap4 %}
+
+    {# CSS Bootstrap #}
+    {% boot
+</head>
+<body>
+    {# JS y jQuery Bootstrap #}
+    {% bootstrap_javascript jquery='full' %}
+    {# Archivos #}
+    {% load static %} <!-- STATIC_URL -->
+    <h4>Detalles</h4>
+
+    <p><span class="txt_negrita">Nombre:</span> <br> {{object.nombre}}</p>
+    <p><span class="txt_negrita">Apellido:</span> <br> {{object.apellidos}}</p>
+    <p><span class="txt_negrita">Telefono:</span> <br> {{object.telefono}}</p>
+    <p><span class="txt_negrita">Creado:</span> <br> {{object.created_at}}</p>
+    <p><span class="txt_negrita">Actualizado:</span> <br> {{object.updated_at}}</p>
+
+<!-- Botón para volver a la vista principal (Home) -->
+<a href="../" type="submit" class="btn btn-primary">Volver</a>
+</body>
+</html>

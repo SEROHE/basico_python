@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {# Cargamos la librería #}
+    {% load bootstrap4 %}
+
+    {# CSS Bootstrap #}
+    {% boot
+</head>
+<body>
+    {# JS y jQuery Bootstrap #}
+    {% bootstrap_javascript jquery='full' %}
+    {# Archivos #}
+    {% load static %} <!-- STATIC_URL -->
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th width="35%">Nombre</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Telefono</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <div align="left" class="btn_crear mb-3">
+        <a href="crear" type="button" class="btn btn-primary">Crear</a>
+    </div>
+  <!-- Recorremos los objetos o registros que tenemos en nuestra tabla '' y los listamos -->
+  {% for contacto in object_list %}
+    <tr>
+      <td>{{agenda_personal.nombre }}</td>
+      <td>{{agenda_personal.apellidos }}</td>
+      <td>{{agenda_personal.telefono }}</td>
+
+      <td>
+
+        <!-- Usaremos un formulario que realizará la tarea de eliminar un registro o postre desde la misma tabla HTML -->
+        <form method="POST" action="eliminar/{{contacto.id}}">
+          {% csrf_token %}
+          <div class="btn-group">
+
+            <!-- Creamos 3 botones que son Ver, Editar y Eliminar, nos sirven para gestionar nuestros registros -->
+            <a href="detalle/{{contacto.id}}" title="Ver" type="button" class="btn btn-success">Ver </a>
+            <a href="editar/{{contacto.id}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
+            <button class="btn btn-danger" onclick="return eliminar();" type="submit">
+              Eliminar
+            </button>
+          </div>
+        </form>
+
+      </td>
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+    <script type="text/javascript">
+      function eliminar() {
+        var x = confirm("Eliminar Producto ?");
+        if (x)
+          return true;
+        else
+          return false;
+      }
+    </script>
+    {% if messages %}
+        <ul class="messages list-group mb-3">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }} list-group-item list-group-item-primary"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
